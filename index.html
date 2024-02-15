@@ -1,1 +1,33 @@
-Hello World
+<!DOCTYPE html>
+<html>
+
+<script>
+    function sdkQuery(cmd) {
+      return new Promise(function(resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        var req = "__gemius_cmd(" + cmd + ")";
+        xhr.open('GET', "data:text/plain;charset=utf-8;base64," + btoa(req), true);
+        xhr.onload = function() {
+          if (this.response !== req) {
+            resolve(this.response);
+          } else {
+            reject();
+          }
+        }
+        xhr.send();
+      });
+    }
+    
+    sdkQuery('getDeviceUid')
+      .then(function(resp) {console.log("Gemius SDK available, response: " + resp)})
+      .catch(function() {console.log("not in SDK")});
+
+</script>
+
+<body>
+
+<p id="deviceUid">Gemius data: XHR test</p>
+
+</body>
+
+</html>
