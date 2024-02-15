@@ -10,7 +10,7 @@
       return new Promise(function(resolve, reject) {
         var xhr = new XMLHttpRequest();
         var req = "__gemius_cmd(" + cmd + ")";
-        xhr.open('GET', "data:text/plain;charset=utf-8;base64," + btoa(req), true);
+        xhr.open('GET', "https://www.gemius.pl/xyz/", true);
         xhr.onload = function() {
           if (this.response !== req) {
             resolve(this.response);
